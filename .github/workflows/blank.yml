@@ -7,8 +7,9 @@ on:
   workflow_dispatch:
 
 env:
-  SECRET: test1234
-  API: 1234TEST
+  WORK_SECRET: test1234
+  WORK_API: 1234TEST
+  TEST: TEST
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,6 +26,6 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
-          ${{ env }} > .env
+          ${{ env }} | grep ^WORK_ | sed s/WORK_//g > .env
           cat .env
 
