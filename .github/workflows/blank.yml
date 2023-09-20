@@ -25,7 +25,12 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: |
-          grep -Po ^WORK_ ${{ toJSON(env) }} | sed s/WORK_//g > .env
-          cat .env
+        uses: SpicyPizza/create-envfile@v2.0
+        with:
+          envkey_WORK_SECRET: ${{ env.WORK_SECRET }}
+          envkey_WORK_API: ${{ env.WORK_API }}
+          envkey_TEST: ${{ env.TEST }}
+          
+      - name: Check API key
+        run: cat .env
 
