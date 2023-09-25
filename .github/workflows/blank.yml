@@ -33,6 +33,6 @@ jobs:
           
       - name: Check API key
         run: |
-          ${{ env }} | grep ^WORK_ | sed s/META_//g > .env.test
+          env | grep ^WORK_ | sed s/META_//g > .env.test
           cat .env.test
 
